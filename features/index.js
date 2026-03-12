@@ -10,6 +10,7 @@ function register(bot) {
 
   for (const file of files) {
     const feature = require(path.join(__dirname, file));
+
     if (feature.command) {
       features[feature.command] = feature;
     }
@@ -22,28 +23,34 @@ function register(bot) {
     if (!text) return;
 
     // START
-    if (text === '/start') {
+    if (text === '/start' && features['start']) {
       return features['start'].execute(bot, msg);
     }
 
     // HELP
-    if (text === '❓ Help') {
+    if (text === '❓ Help' && features['help']) {
       return features['help'].execute(bot, msg);
     }
 
     // MENFES
-    if (text === '💌 Menfes') {
+    if (text === '💌 Menfes' && features['menfes']) {
       return features['menfes'].execute(bot, msg);
     }
 
     // KIRIM PAP
-    if (text === '📤 Kirim PAP') {
+    if (text === '📤 Kirim PAP' && features['kirimpap']) {
       return features['kirimpap'].execute(bot, msg);
     }
 
-    // HANDLE SESSION FEATURE
+    // RATE PAP
+    if (text === '⭐ Rate PAP' && features['rate']) {
+      return features['rate'].execute(bot, msg);
+    }
+
+    // SESSION HANDLER
     for (const key in features) {
       const feature = features[key];
+
       if (feature.handleMessage) {
         await feature.handleMessage(bot, msg);
       }
