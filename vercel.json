@@ -9,23 +9,7 @@
   "routes": [
     {
       "src": "/api/bot",
-      "dest": "/api/bot.js",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/set-webhook",
-      "dest": "/api/bot.js",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/",
-      "dest": "/api/bot.js",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/bot.js",
-      "methods": ["GET"]
+      "dest": "api/bot.js"
     }
   ]
 }
